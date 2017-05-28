@@ -1,0 +1,39 @@
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+    <session-factory>
+    	<!-- 数据库连接参数 -->
+    	<property name="hibernate.connection.url">jdbc:mysql:///library?zeroDateTimeBehavior=convertToNull</property>
+    	<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+    	<property name="hibernate.connection.username">library</property>
+    	<property name="hibernate.connection.password">CGwin2017..</property>
+    	<property name="connection.characterEncoding">utf-8</property> 
+    	<property name="javax.persistence.validation.mode">none</property>
+    	
+    	<!-- 通过数据库方言：告诉hibernate生成符合 -->
+    	<property name="hibernate.dialect">com.library.util.hibernate.MySQLTableEncoding</property>
+    
+    	<!-- 查看sql语句 且 格式化 -->
+    	<!-- 
+    		<property name="hibernate.show_sql">true</property>
+    		<property name="hibernate.format_sql">true</property>
+    	 -->
+    	 
+    	<!-- 加载映射 -->
+    	<mapping resource="config/mapper/Admin.hbm.xml"/>
+    	<mapping resource="config/mapper/Bespeak.hbm.xml"/>
+    	<mapping resource="config/mapper/Book.hbm.xml"/>
+    	<mapping resource="config/mapper/BookImg.hbm.xml"/>
+    	<mapping resource="config/mapper/BookStudent.hbm.xml"/>
+    	<mapping resource="config/mapper/BookType.hbm.xml"/>
+    	<mapping resource="config/mapper/Collect.hbm.xml"/>
+    	<mapping resource="config/mapper/History.hbm.xml"/>
+    	<mapping resource="config/mapper/Search.hbm.xml"/>
+    	<mapping resource="config/mapper/Remind.hbm.xml"/>
+    	<mapping resource="config/mapper/Review.hbm.xml"/>
+    	<mapping resource="config/mapper/Student.hbm.xml"/>
+    	
+    </session-factory>
+</hibernate-configuration>

@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+
+	<package name="action" extends="struts-default" namespace="/">
+	
+		<global-results>
+			<result name="s_register">/WEB-INF/pages/front/register.jsp</result>
+			<result name="s_login">/WEB-INF/pages/front/login.jsp</result>
+		</global-results>
+		
+		
+		<!-- 
+			用户模块：
+				注册登录 ...
+		 -->
+		<action name="user_*" class="com.library.web.StudentAction" method="{1}">
+			<result name="re_s_login" type="chain">user_s_login</result>
+			<result name="s_home" >/WEB-INF/pages/front/home.jsp</result>
+			<result name="log_s_search" type="redirectAction">search_s_search</result>
+			<result name="up_exit" type="chain">
+				<param name="actionName">user_exit</param>
+			</result>
+		</action>
+		
+		<!-- 
+			还书提醒
+		 -->
+		<action name="remind_*" class="com.library.web.RemindAction" method="{1}">
+			<result name="s_bookInfo"  type="chain">book_s_bookInfo</result>
+		</action>
+		
+		<!-- 
+			搜索模块：
+				显示分类\搜索书籍 ...
+		 -->
+		<action name="search_*" class="com.library.web.BookTypeAction" method="{1}">
+			<result name="s_search">/WEB-INF/pages/front/search.jsp</result>
+			<result name="s_bookType">/WEB-INF/pages/front/types.jsp</result>
+			
+		</action>
+		
+		<!-- 
+			搜索模块：
+				显示分类\搜索书籍 ...
+		 -->
+		<action name="search1_*" class="com.library.web.SearchAction" method="{1}">
+		</action>
+		
+		<!-- 
+			书籍模块：
+				书籍的显示 & 收藏\借书\预约的入口 ...
+		 -->
+		<action name="book_*" class="com.library.web.BookAction" method="{1}">
+			<result name="s_bookInfo">/WEB-INF/pages/front/bookInfo.jsp</result>
+			<result name="re_s_bookInfo" type="redirectAction">
+				<param name="actionName">book_s_bookInfo</param>
+				<param name="bid">${bid}</param>
+			</result>
+		</action>
+		
+		<!-- 
+			收藏模块：
+				用户的收藏操作 ...
+		 -->
+		<action name="collect_*" class="com.library.web.CollectAction" method="{1}">
+			<result name="s_collect">/WEB-INF/pages/front/collect.jsp</result>
+			<result name="del_s_collect" type="chain">
+				<param name="actionName">collect_s_collect</param>
+				<param name="currentPage">${currentPage}</param>
+			</result>
+			
+			<result name="s_bookInfo" type="redirectAction">
+				<param name="actionName">book_s_bookInfo</param>
+  				<param name="bid">${bid}</param>
+			</result>
+			
+		</action>
+		
+		<action name="history_*" class="com.library.web.HistoryAction" method="{1}">
+			<result name="s_history">/WEB-INF/pages/front/history.jsp</result>
+			<result name="del_s_history" type="chain">
+				<param name="actionName">history_s_history</param>
+				<param name="currentPage">${currentPage}</param>
+			</result>
+			
+		</action>
+		
+		<!-- 
+			预约模块：
+		 -->
+		<action name="bespeak_*" class="com.library.web.BespeakAction" method="{1}">
+			<result name="s_bespeak" >/WEB-INF/pages/front/bespeak.jsp</result>
+			<result name="sas_bespeak"  type="redirectAction">bespeak_s_bespeak</result>
+			<result name="s_bookInfo" type="chain">book_s_bookInfo</result>
+			<result name="del_s_bespeak" type="chain">
+				<param name="actionName">bespeak_s_bespeak</param>
+  				<param name="tab">${tab}</param>
+			</result>
+			<result name="del_s_bookInfo" type="chain">
+				<param name="actionName">book_s_bookInfo</param>
+  				<param name="bid">${bid}</param>
+			</result>
+			
+			<result name="ads_bespeak">/WEB-INF/pages/admin/bespeak.jsp</result>
+			<result name="ads_login">/WEB-INF/pages/admin/login.jsp</result>
+		</action>
+		
+		<!-- 
+			借书记录模块：
+		 -->
+		<action name="order_*" class="com.library.web.BookStudentAction" method="{1}">
+			<result name="s_submit">/WEB-INF/pages/front/submit.jsp</result>
+			<result name="s_order">/WEB-INF/pages/front/order.jsp</result>
+			<result name="s_orderInfo">/WEB-INF/pages/front/orderInfo.jsp</result>
+			<result name="sa_s_order" type="redirectAction">order_s_order</result>
+			<result name="s_qrcode">/WEB-INF/pages/front/qrcode.jsp</result>
+			<result name="del_s_order" type="chain">order_s_order</result>
+			<result name="s_bookInfo" type="chain">
+				<param name="actionName">book_s_bookInfo</param>
+				<param name="bid">${bid}</param>
+			</result>
+			
+			<result name="sas_orderInfo" type="redirectAction">
+				<param name="actionName">order_s_orderInfo</param>
+				<param name="oid">${oid}</param>
+			</result>
+			
+			<result name="ads_order">/WEB-INF/pages/admin/order.jsp</result>
+			<result name="ads_login">/WEB-INF/pages/admin/login.jsp</result>
+			<result name="ads_qrcode">/WEB-INF/pages/admin/qrcode.jsp</result>
+			<result name="ads_home" type="chain">admin_s_home</result>
+			<result name="ads_orderInfo">/WEB-INF/pages/admin/orderInfo.jsp</result>
+		</action>
+		
+		<action name="admin_*" class="com.library.web.AdminAction" method="{1}">
+			<result name="s_login">/WEB-INF/pages/admin/login.jsp</result>
+			<result name="s_home">/WEB-INF/pages/admin/home.jsp</result>
+			<result name="log_s_home" type="redirectAction">admin_s_home</result>
+		</action>
+		
+	</package>
+</struts>

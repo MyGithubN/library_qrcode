@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.library.dao.bean">
+	<class name="BookStudent" table="library_book_student" lazy="false">
+		<id name="id" column="id">
+			<generator class="assigned"></generator>
+		</id>
+		
+		<many-to-one name="book" column="bid" class="Book" cascade="none"></many-to-one>
+		<many-to-one name="student" column="sid" class="Student" cascade="none"></many-to-one>
+
+		<property name="qname" length="50"></property>
+		<property name="bdate" type="timestamp" ></property>
+		<property name="rdate" type="timestamp"></property>
+		<property name="adate" type="timestamp"></property>
+		<property name="cdate" type="timestamp" ></property>
+		<property name="udate" type="timestamp"></property>
+		<property name="yn" ></property>
+		<property name="sms" ></property>
+		<property name="status" ></property>
+		
+	</class>
+</hibernate-mapping>

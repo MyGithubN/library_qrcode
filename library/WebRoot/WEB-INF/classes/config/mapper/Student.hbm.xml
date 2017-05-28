@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.library.dao.bean">
+	<class name="Student" table="library_student" lazy="false">
+		<id name="id" column="id">
+			<generator class="native"></generator>
+		</id>
+		
+		<property name="sno"  length="20"></property>
+		<property name="idcard"  length="18"></property>
+		<property name="sname"  length="50"></property>
+		<property name="password"  length="32"></property>
+		<property name="phone"  length="11"></property>
+		<property name="email"  length="50"></property>
+		<property name="cdate" type="timestamp" ></property>
+		<property name="udate" type="timestamp"></property>
+		<property name="yn" ></property>
+		
+	</class>
+</hibernate-mapping>

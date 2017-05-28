@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.library.dao.bean">
+	<class name="Search" table="library_search" lazy="false">
+		<id name="id" column="id">
+			<generator class="native"></generator>
+		</id>
+
+		<many-to-one name="student" column="sid" class="Student" cascade="none"></many-to-one>
+
+		<property name="keywords" length="50"></property>
+		<property name="cdate" type="timestamp" ></property>
+		<property name="udate" type="timestamp"></property>
+		<property name="yn" ></property>
+
+	</class>
+</hibernate-mapping>

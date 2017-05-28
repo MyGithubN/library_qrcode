@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.library.dao.bean">
+	<class name="Book" table="library_book" lazy="false">
+		<id name="id" column="id">
+			<generator class="native"></generator>
+		</id>
+		
+		<property name="bno"  length="20"></property>
+		<property name="bname"  length="100"></property>
+		<property name="author"  length="50"></property>
+		<property name="publishing"  length="50"></property>
+		<property name="price" ></property>
+		<property name="total" ></property>
+		<property name="remain" ></property>
+		<property name="brief"  length="500"></property>
+		<property name="catalogue"  length="1000"></property>
+		<property name="cdate" type="timestamp" ></property>
+		<property name="udate" type="timestamp"></property>
+		<property name="yn" ></property>
+		
+		<one-to-one name="bookImg"  class="BookImg" cascade="all"></one-to-one>
+		<many-to-one name="bookType" column="tid" class="BookType" cascade="none"></many-to-one>
+		
+	</class>
+</hibernate-mapping>
